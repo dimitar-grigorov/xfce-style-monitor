@@ -4,13 +4,7 @@ The **System Load Monitor** and **Network Monitor** panel plugins of Xfce, for G
 bars with text labels for CPU, memory and swap, uptime, and network in/out. Two independent
 indicators, in the top bar or in Dash to Panel. Nothing else to install. GNOME 48.
 
-<p align="center">
-  <img src="screenshots/panel.png" alt="The panel with the default settings">
-</p>
-
-| System Load | Network |
-|---|---|
-| ![System Load settings](screenshots/prefs-system-load.png) | ![Network settings](screenshots/prefs-network.png) |
+![Xfce-style Monitor: the panel and its settings](screenshots/showcase.png)
 
 Hover for details (memory used, rates, IP address), left-click System Load to open the system
 monitor, right-click either for its settings.
@@ -54,11 +48,11 @@ An independent project, not affiliated with or endorsed by the Xfce or GNOME pro
 ## Development
 
 ```sh
-scripts/dev.sh          # nested GNOME Shell in a window; close it and rerun after a change
-scripts/dev.sh prefs    # the same, with the preferences open
-tests/run.sh            # unit tests (gjs, no shell needed)
+scripts/dev.sh                # nested GNOME Shell in a window; close it and rerun after a change
+scripts/dev.sh prefs          # the same, with the preferences open
+tests/run.sh                  # unit tests (gjs, no shell needed)
 npm install && npx eslint .   # lint
-scripts/pack.sh         # dist/<uuid>.shell-extension.zip; -i also installs it
+scripts/pack.sh               # dist/<uuid>.shell-extension.zip; -i also installs it
 ```
 
 A tag `vX` (with a `[X]` section in CHANGELOG.md) makes GitHub build the zip and publish a
@@ -83,6 +77,18 @@ screenshots/            README images; xfce-original-panel.png is the Xfce origi
 
 Deliberate differences from the Xfce plugins are commented where they are, starting with `XFCE:`;
 `grep -rn 'XFCE:' --include=*.js --include=*.css --include=*.xml .` lists them.
+
+## Screenshots
+
+The panel with the default settings:
+
+<p align="center">
+  <img src="screenshots/panel.png" alt="The panel with the default settings">
+</p>
+
+| System Load | Network |
+|---|---|
+| ![System Load settings](screenshots/prefs-system-load.png) | ![Network settings](screenshots/prefs-network.png) |
 
 ## License
 
