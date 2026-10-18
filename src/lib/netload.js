@@ -6,7 +6,6 @@ const INIT_MAX = 4096;           // bytes/s
 const MINIMAL_MAX = 1024;
 const SHRINK_MAX = 0.75;
 
-// One direction (in or out) of one device.
 export class RateHistory {
     #history = new Array(HISTORY_SIZE).fill(0); // newest first
     #max = INIT_MAX;

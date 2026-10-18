@@ -1,4 +1,4 @@
-// Memory and swap from /proc/meminfo, in bytes. Used = total − available, as in XFCE.
+// Memory and swap from /proc/meminfo, in bytes. Used = total - available, as in XFCE.
 import {readText} from '../procfs.js';
 
 /**

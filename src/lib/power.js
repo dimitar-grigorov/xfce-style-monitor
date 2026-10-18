@@ -10,7 +10,6 @@ const UPowerProxy = Gio.DBusProxy.makeProxyWrapper(`
 </node>`);
 
 export class PowerState {
-    // onChanged: once the proxy is ready, then on every change.
     constructor(onChanged) {
         this._cancellable = new Gio.Cancellable();
         this._proxy = null;

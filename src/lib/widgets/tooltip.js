@@ -13,7 +13,7 @@ const GAP = 6;
 let lastHiddenTime = 0;
 
 export class Tooltip {
-    // getText() is called only while the tooltip shows; '' shows nothing. Destroyed with actor.
+    // getText() is called only while the tooltip shows.
     constructor(actor, getText) {
         this._actor = actor;
         this._getText = getText;
@@ -33,7 +33,6 @@ export class Tooltip {
             this);
     }
 
-    // Call when the data changed; a visible tooltip takes the new text.
     update() {
         if (!this._label.visible)
             return;

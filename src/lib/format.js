@@ -1,4 +1,4 @@
-// Text formatting for the indicators. Unit symbols are not translated, as in XFCE's panel.
+// Unit symbols are not translated, as in Xfce's panel.
 
 // netload's format_byte_humanreadable() (utils.c).
 const UNITS = {
@@ -21,7 +21,6 @@ function numericLocale() {
     }
 }
 
-// The cache is module state: extension.js clears it on disable().
 export function clearFormatCache() {
     numberFormats.clear();
 }

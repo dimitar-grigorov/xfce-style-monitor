@@ -26,12 +26,10 @@ export class IndicatorButton extends PanelMenu.Button {
         super._onDestroy();
     }
 
-    // Starts updating now at interval(), if on screen. Call after the interval changed.
     restart() {
         this._ticker.start(this.mapped ? this.interval() : null);
     }
 
-    // ms between updates, or null for none.
     interval() {
         return null;
     }
@@ -39,7 +37,6 @@ export class IndicatorButton extends PanelMenu.Button {
     async _update(_cancellable) {
     }
 
-    // Left click: nothing, as in netload.
     activate() {
     }
 

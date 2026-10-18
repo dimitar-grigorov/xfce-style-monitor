@@ -1,4 +1,3 @@
-// One page per indicator, like XFCE's two settings dialogs.
 import {ExtensionPreferences} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
 import {networkPage} from './prefs/networkPage.js';

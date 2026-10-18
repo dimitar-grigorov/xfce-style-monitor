@@ -13,11 +13,11 @@ monitor, right-click either for its settings.
 
 ## Install
 
-**From a release** — download `xfce-style-monitor@grigorov.shell-extension.zip` from
+**From a release**: download `xfce-style-monitor@dimitar-grigorov.github.io.shell-extension.zip` from
 [Releases](../../releases), then:
 
 ```sh
-gnome-extensions install --force xfce-style-monitor@grigorov.shell-extension.zip
+gnome-extensions install --force xfce-style-monitor@dimitar-grigorov.github.io.shell-extension.zip
 ```
 
 **From source:**
@@ -29,7 +29,7 @@ scripts/dev.sh link
 ```
 
 Then log out and back in (GNOME on Wayland loads new extensions only at login) and turn it on in
-the Extensions app, or with `gnome-extensions enable xfce-style-monitor@grigorov`.
+the Extensions app, or with `gnome-extensions enable xfce-style-monitor@dimitar-grigorov.github.io`.
 
 ## Credits
 
@@ -67,11 +67,11 @@ the real ones.
 src/                    the extension itself, what the zip contains
   extension.js          creates/destroys the two indicators per settings
   prefs.js, prefs/      preferences: one page per indicator, as Xfce's two dialogs
-  lib/sources/          readers: /proc and /sys text → plain numbers (no St, no timers)
+  lib/sources/          readers: /proc and /sys text to plain numbers (no St, no timers)
   lib/netload.js        netload's averaging and automatic maximum
   lib/format.js         units, uptime format
-  lib/widgets/          bar, value label, tooltip — know nothing about CPU or network
-  lib/indicators/       the two panel buttons: timer, settings, sources → widgets
+  lib/widgets/          bar, value label, tooltip; they know nothing about CPU or network
+  lib/indicators/       the two panel buttons: timer, settings, sources to widgets
 scripts/                dev.sh (nested shell), pack.sh (zip)
 tests/                  unit tests
 screenshots/            README images; xfce-original-panel.png is the Xfce original the sizes come from

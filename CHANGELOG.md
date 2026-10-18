@@ -5,6 +5,13 @@ section `[X]` as the release notes.
 
 ## [Unreleased]
 
+## [0.2] - 2026-10-18
+
+### Changed
+- New UUID `xfce-style-monitor@dimitar-grigorov.github.io`, as extensions.gnome.org requires.
+  Remove 0.1 (`gnome-extensions uninstall xfce-style-monitor@grigorov`) before installing.
+- NetworkManager is loaded without a fixed version.
+
 ## [0.1] - 2026-10-18
 
 First release, for GNOME 48.

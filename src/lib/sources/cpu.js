@@ -23,7 +23,7 @@ export function parseStat(text) {
 /**
  * @param {{busy: number, total: number}} prev
  * @param {{busy: number, total: number}} cur
- * @returns {number} 0…1
+ * @returns {number} 0 to 1
  */
 export function loadBetween(prev, cur) {
     const total = cur.total - prev.total;

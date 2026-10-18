@@ -12,7 +12,6 @@ export class Ticker {
         this._lastError = null;
     }
 
-    // intervalMs null stops it.
     start(intervalMs) {
         this.stop();
         if (intervalMs === null)
@@ -50,7 +49,6 @@ export class Ticker {
         } catch (e) {
             if (e.matches?.(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED))
                 return;
-            // Log an error once, not on every tick.
             if (e.message !== this._lastError)
                 console.warn(`[xfce-style-monitor] ${this._name}: ${e.message}`);
             this._lastError = e.message;

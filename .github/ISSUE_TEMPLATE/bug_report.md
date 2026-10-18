@@ -15,7 +15,7 @@ about: Something doesn't work or looks wrong
 - Top bar or Dash to Panel (and its position):
 - Other extensions enabled (`gnome-extensions list --enabled`):
 
-**Log** — run this, reproduce the problem, paste what appears:
+**Log**: run this, reproduce the problem, paste what appears:
 
 ```
 journalctl -f -o cat /usr/bin/gnome-shell

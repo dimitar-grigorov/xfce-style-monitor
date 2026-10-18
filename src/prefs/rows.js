@@ -19,7 +19,6 @@ export class Rows {
         });
     }
 
-    /** Calls callback now and whenever one of the keys changes. */
     onChange(keys, callback) {
         for (const key of keys)
             this._handlers.push(this.settings.connect(`changed::${key}`, callback));
@@ -32,7 +31,6 @@ export class Rows {
         return row;
     }
 
-    /** A switch for a group's header, like XFCE's switch next to "CPU monitor". */
     headerSwitch(key) {
         const sw = new Gtk.Switch({valign: Gtk.Align.CENTER});
         this.settings.bind(key, sw, 'active', Gio.SettingsBindFlags.DEFAULT);
@@ -50,7 +48,6 @@ export class Rows {
         if (scale === 1) {
             this.settings.bind(key, row, 'value', Gio.SettingsBindFlags.DEFAULT);
         } else {
-            // e.g. milliseconds in settings shown as seconds
             this.onChange([key], () => {
                 const value = this.settings.get_uint(key) / scale;
                 if (row.value !== value)
@@ -102,7 +99,6 @@ export class Rows {
         return row;
     }
 
-    /** widget is sensitive while the boolean key is true (false with invert). */
     sensitiveWhen(key, widget, invert = false) {
         let flags = Gio.SettingsBindFlags.GET;
         if (invert)

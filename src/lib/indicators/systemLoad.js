@@ -24,15 +24,13 @@ const MONITORS = [
     ['swap', () => _('Swap')],
 ];
 
-class Monitor {
-    constructor(accessibleName, getTooltip) {
-        this.label = new St.Label({style_class: 'xsm-label', y_align: Clutter.ActorAlign.CENTER});
-        this.bar = new Bar();
-        this.box = new St.BoxLayout({style_class: 'xsm-monitor', accessible_name: accessibleName});
-        this.box.add_child(this.label);
-        this.box.add_child(this.bar);
-        this.tooltip = new Tooltip(this.box, getTooltip);
-    }
+function createMonitor(accessibleName, getTooltip) {
+    const label = new St.Label({style_class: 'xsm-label', y_align: Clutter.ActorAlign.CENTER});
+    const bar = new Bar();
+    const box = new St.BoxLayout({style_class: 'xsm-monitor', accessible_name: accessibleName});
+    box.add_child(label);
+    box.add_child(bar);
+    return {label, bar, box, tooltip: new Tooltip(box, getTooltip)};
 }
 
 export class SystemLoadIndicator extends IndicatorButton {
@@ -50,7 +48,7 @@ export class SystemLoadIndicator extends IndicatorButton {
 
         this._monitors = {};
         for (const [key, name] of MONITORS) {
-            this._monitors[key] = new Monitor(name(), () => this._tooltipText(key));
+            this._monitors[key] = createMonitor(name(), () => this._tooltipText(key));
             this._box.add_child(this._monitors[key].box);
         }
         this._uptime = new St.Label({
@@ -74,6 +72,7 @@ export class SystemLoadIndicator extends IndicatorButton {
         this._power?.destroy();
         this._settings.disconnectObject(this);
         this._settings = null;
+        this._monitors = null;
         super._onDestroy();
     }
 
@@ -86,7 +85,6 @@ export class SystemLoadIndicator extends IndicatorButton {
         return this._settings.get_uint('system-load-battery-interval') * 1000;
     }
 
-    // click_event(): left click runs the system monitor command.
     activate() {
         const command = this._settings.get_string('system-load-command').trim();
         if (!command)
@@ -137,7 +135,6 @@ export class SystemLoadIndicator extends IndicatorButton {
         this._box.style = labels ? null : 'spacing: 0;';
     }
 
-    // UPower is watched only while the battery interval is in use.
     _syncPower() {
         const wanted = this._settings.get_uint('system-load-battery-interval') > 0;
         if (wanted && !this._power) {
@@ -177,7 +174,6 @@ export class SystemLoadIndicator extends IndicatorButton {
         }
     }
 
-    // The texts of update_monitors().
     _tooltipText(key) {
         const {load, mem, uptime} = this._data;
         switch (key) {

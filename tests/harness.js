@@ -22,7 +22,7 @@ export function equal(actual, expected, what = '') {
 
 export function near(actual, expected, epsilon = 1e-9, what = '') {
     if (Math.abs(actual - expected) > epsilon)
-        throw new Error(`${what ? `${what}: ` : ''}expected ${expected} ± ${epsilon}, got ${actual}`);
+        throw new Error(`${what ? `${what}: ` : ''}expected ${expected} +/- ${epsilon}, got ${actual}`);
 }
 
 export function done() {

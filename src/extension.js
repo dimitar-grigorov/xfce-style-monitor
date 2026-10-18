@@ -7,7 +7,6 @@ import {clearFormatCache} from './lib/format.js';
 import {NetworkIndicator} from './lib/indicators/network.js';
 import {SystemLoadIndicator} from './lib/indicators/systemLoad.js';
 
-// Panel order, left to right, as the prefs pages.
 const INDICATORS = [
     ['system-load', SystemLoadIndicator],
     ['network', NetworkIndicator],
@@ -49,7 +48,6 @@ export default class XfceStyleMonitor extends Extension {
         const indicator = this._indicators.get(name);
         if (wanted && !indicator) {
             const Indicator = INDICATORS.find(([n]) => n === name)[1];
-            // Start of the right box, in INDICATORS order among those shown.
             const position = INDICATORS.findIndex(([n]) => n === name);
             const before = INDICATORS.slice(0, position).filter(([n]) => this._indicators.has(n));
             this._indicators.set(name,

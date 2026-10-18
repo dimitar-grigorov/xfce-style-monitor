@@ -53,7 +53,7 @@ test('netload: average of the last 4, automatic maximum grows and shrinks', () =
     for (let i = 0; i < 60; i++)
         last = h.push(0, null);
     equal(last.average, 0);
-    // 5500 × 0.75⁵ ≈ 1305; one more step would go below 1024.
+    // 5500 * 0.75^5 is about 1305; one more step would go below 1024.
     near(h.push(1024, null).fraction, 256 / (5500 * 0.75 ** 5), 1e-9, 'shrunk maximum');
 });
 

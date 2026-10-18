@@ -1,4 +1,3 @@
-// Uptime in whole seconds from /proc/uptime.
 import {readText} from '../procfs.js';
 
 /**

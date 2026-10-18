@@ -28,7 +28,6 @@ export class ValueLabel extends St.Label {
         }
     }
 
-    // After the number format changed.
     resetWidth() {
         this._widest = 0;
         this.min_width_set = false;

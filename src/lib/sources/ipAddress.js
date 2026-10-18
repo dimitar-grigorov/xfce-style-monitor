@@ -28,7 +28,7 @@ export class IpAddressSource {
     async _start() {
         this._started = true;
         try {
-            const {default: NM} = await import('gi://NM?version=1.0');
+            const {default: NM} = await import('gi://NM');
             Gio._promisify(NM.Client, 'new_async');
             this._client = await NM.Client.new_async(this._cancellable);
         } catch (e) {

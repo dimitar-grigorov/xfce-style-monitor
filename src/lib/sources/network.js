@@ -9,7 +9,7 @@ export const AUTO_DEVICE = 'auto';
 const IFF_UP = 0x1;
 
 /**
- * After two header lines: "name: rx_bytes … (8 rx fields) tx_bytes …".
+ * After two header lines: "name: rx_bytes ... (8 rx fields) tx_bytes ...".
  *
  * @param {string} text - /proc/net/dev
  * @returns {Map<string, {rxBytes: number, txBytes: number}>}
@@ -63,7 +63,6 @@ export function isValidDeviceName(name) {
     return /^[^/\s:]{1,15}$/.test(name) && name !== '.' && name !== '..';
 }
 
-// false also when the device doesn't exist.
 async function readDeviceUp(name, cancellable) {
     const flags = await readTextOrNull(`/sys/class/net/${name}/flags`, cancellable);
     return flags !== null && (Number.parseInt(flags, 16) & IFF_UP) !== 0;
@@ -116,7 +115,7 @@ export class NetworkSource {
         return {device, up: true, ...this.update(counters, GLib.get_monotonic_time())};
     }
 
-    // Apart from read() for the tests. XFCE: totals are rate × interval; here exact deltas.
+    // Apart from read() for the tests. XFCE: totals are rate * interval; here exact deltas.
     update(counters, timeUs) {
         const prev = this.#prev;
         this.#prev = {...counters, timeUs};

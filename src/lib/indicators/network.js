@@ -16,21 +16,18 @@ import {IndicatorButton} from './indicatorButton.js';
 
 const NO_VALUE = '-';
 
-// One direction: value, cumulative value under it, bar, smoothing.
-class Direction {
-    constructor(accessibleName) {
-        this.value = new ValueLabel({text: NO_VALUE});
-        this.cumulative = new ValueLabel({text: NO_VALUE});
-        this.values = new St.BoxLayout({
-            style_class: 'xsm-values',
-            orientation: Clutter.Orientation.VERTICAL,
-            y_align: Clutter.ActorAlign.CENTER,
-        });
-        this.values.add_child(this.value);
-        this.values.add_child(this.cumulative);
-        this.bar = new Bar({accessible_name: accessibleName});
-        this.history = new RateHistory();
-    }
+function createDirection(accessibleName) {
+    const value = new ValueLabel({text: NO_VALUE});
+    const cumulative = new ValueLabel({text: NO_VALUE});
+    const values = new St.BoxLayout({
+        style_class: 'xsm-values',
+        orientation: Clutter.Orientation.VERTICAL,
+        y_align: Clutter.ActorAlign.CENTER,
+    });
+    values.add_child(value);
+    values.add_child(cumulative);
+    const bar = new Bar({accessible_name: accessibleName});
+    return {value, cumulative, values, bar, history: new RateHistory()};
 }
 
 export class NetworkIndicator extends IndicatorButton {
@@ -43,8 +40,8 @@ export class NetworkIndicator extends IndicatorButton {
         this._settings = settings;
         this._sample = null;
 
-        this._in = new Direction(_('Incoming'));
-        this._out = new Direction(_('Outgoing'));
+        this._in = createDirection(_('Incoming'));
+        this._out = createDirection(_('Outgoing'));
 
         const box = new St.BoxLayout({style_class: 'xsm-box xsm-network'});
         this._label = new St.Label({style_class: 'xsm-label', y_align: Clutter.ActorAlign.CENTER});
@@ -71,6 +68,8 @@ export class NetworkIndicator extends IndicatorButton {
         this._addresses.destroy();
         this._settings.disconnectObject(this);
         this._settings = null;
+        this._in = null;
+        this._out = null;
         super._onDestroy();
     }
 
@@ -125,7 +124,7 @@ export class NetworkIndicator extends IndicatorButton {
     async _update(cancellable) {
         const source = this._source;
         const sample = await source.read(cancellable);
-        // Destroyed, or the device changed while reading: this sample belongs to the old one.
+        // Destroyed, or the device changed while reading.
         if (cancellable.is_cancelled() || source !== this._source)
             return;
 
@@ -172,7 +171,6 @@ export class NetworkIndicator extends IndicatorButton {
         return formatBytes(bytes, this._options.format);
     }
 
-    // The texts of update_monitors().
     _tooltipText() {
         const sample = this._sample;
         if (!sample)

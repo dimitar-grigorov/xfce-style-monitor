@@ -4,7 +4,6 @@ import Cogl from 'gi://Cogl';
 import GObject from 'gi://GObject';
 import St from 'gi://St';
 
-// GType names are prefixed: they are global to the shell process.
 export class Bar extends St.DrawingArea {
     static {
         GObject.registerClass({GTypeName: 'XsmBar'}, this);
@@ -19,7 +18,6 @@ export class Bar extends St.DrawingArea {
         });
         this._fraction = 0;
         this._color = new Cogl.Color({red: 255, green: 255, blue: 255, alpha: 255});
-        // Height and filled height at the last repaint.
         this._height = 0;
         this._drawnFill = -1;
     }
@@ -31,7 +29,6 @@ export class Bar extends St.DrawingArea {
             this.queue_repaint();
     }
 
-    // Any CSS colour: "#1c71d8", "rgba(28,113,216,0.8)".
     setColor(color) {
         const [ok, parsed] = Cogl.Color.from_string(color);
         if (!ok || this._color.equal(parsed))
