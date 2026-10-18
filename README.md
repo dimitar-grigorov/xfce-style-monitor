@@ -4,7 +4,9 @@ The **System Load Monitor** and **Network Monitor** panel plugins of Xfce, for G
 bars with text labels for CPU, memory and swap, uptime, and network in/out. Two independent
 indicators, in the top bar or in Dash to Panel. Nothing else to install. GNOME 48.
 
-![Xfce-style Monitor: the panel and its settings](screenshots/showcase.png)
+<p align="center">
+  <img src="screenshots/showcase.png" width="600" alt="Xfce-style Monitor: the panel and its settings">
+</p>
 
 Hover for details (memory used, rates, IP address), left-click System Load to open the system
 monitor, right-click either for its settings.
