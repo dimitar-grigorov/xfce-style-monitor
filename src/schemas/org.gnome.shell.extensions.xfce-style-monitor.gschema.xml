@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Keys and defaults from systemload's settings.cc and netload's netload.c unless noted. -->
+<schemalist gettext-domain="xfce-style-monitor">
+  <schema id="org.gnome.shell.extensions.xfce-style-monitor"
+          path="/org/gnome/shell/extensions/xfce-style-monitor/">
+
+    <!-- System load -->
+    <key name="system-load-enabled" type="b">
+      <default>true</default>
+      <summary>Show the system load indicator</summary>
+    </key>
+    <key name="system-load-interval" type="u">
+      <range min="500" max="10000"/>
+      <default>500</default>
+      <summary>Update interval (ms)</summary>
+    </key>
+    <key name="system-load-battery-interval" type="u">
+      <range min="0" max="10"/>
+      <default>1</default>
+      <summary>Update interval on battery (s)</summary>
+      <description>0 uses the regular update interval. On battery with the lid closed nothing is updated.</description>
+    </key>
+    <key name="system-load-command" type="s">
+      <!-- XFCE: xfce4-taskmanager -->
+      <default>'gnome-system-monitor'</default>
+      <summary>Command run on click</summary>
+      <description>Empty to do nothing on click.</description>
+    </key>
+
+    <key name="cpu-enabled" type="b">
+      <default>true</default>
+      <summary>Show the CPU monitor</summary>
+    </key>
+    <!-- XFCE: also a *-use-label switch; its dialog already says "Leave empty to disable". -->
+    <key name="cpu-label" type="s">
+      <default>'cpu'</default>
+      <summary>CPU label</summary>
+      <description>Empty hides the label.</description>
+    </key>
+    <key name="cpu-color" type="s">
+      <default>'#1c71d8'</default>
+      <summary>CPU bar colour</summary>
+    </key>
+
+    <key name="memory-enabled" type="b">
+      <default>true</default>
+      <summary>Show the memory monitor</summary>
+    </key>
+    <key name="memory-label" type="s">
+      <default>'mem'</default>
+      <summary>Memory label</summary>
+      <description>Empty hides the label.</description>
+    </key>
+    <key name="memory-color" type="s">
+      <default>'#2ec27e'</default>
+      <summary>Memory bar colour</summary>
+    </key>
+
+    <key name="swap-enabled" type="b">
+      <default>true</default>
+      <summary>Show the swap monitor</summary>
+    </key>
+    <key name="swap-label" type="s">
+      <default>'swap'</default>
+      <summary>Swap label</summary>
+      <description>Empty hides the label.</description>
+    </key>
+    <key name="swap-color" type="s">
+      <default>'#f5c211'</default>
+      <summary>Swap bar colour</summary>
+    </key>
+
+    <key name="uptime-enabled" type="b">
+      <default>true</default>
+      <summary>Show the uptime</summary>
+    </key>
+    <key name="uptime-format" type="s">
+      <default>'%hh %mm'</default>
+      <summary>Uptime format</summary>
+      <description>%d days, %h hours, %m minutes, %s seconds.</description>
+    </key>
+
+    <!-- Network -->
+    <key name="network-enabled" type="b">
+      <default>true</default>
+      <summary>Show the network indicator</summary>
+    </key>
+    <key name="network-use-label" type="b">
+      <default>true</default>
+      <summary>Show the text label</summary>
+    </key>
+    <key name="network-label" type="s">
+      <default>'Net'</default>
+      <summary>Text to display</summary>
+    </key>
+    <key name="network-device" type="s">
+      <default>'auto'</default>
+      <summary>Network device</summary>
+      <description>An interface name, or "auto" for the one carrying the default route.</description>
+    </key>
+    <key name="network-interval" type="u">
+      <range min="100" max="10000"/>
+      <default>250</default>
+      <summary>Update interval (ms)</summary>
+    </key>
+    <key name="network-bits" type="b">
+      <default>false</default>
+      <summary>Show values as bits</summary>
+    </key>
+    <key name="network-cumulative" type="b">
+      <default>false</default>
+      <summary>Show cumulative values</summary>
+    </key>
+    <key name="network-auto-max" type="b">
+      <default>true</default>
+      <summary>Automatic maximum</summary>
+    </key>
+    <key name="network-max-in" type="u">
+      <default>4</default>
+      <summary>Maximum incoming (KiB/s)</summary>
+      <description>Full bar when the automatic maximum is off.</description>
+    </key>
+    <key name="network-max-out" type="u">
+      <default>4</default>
+      <summary>Maximum outgoing (KiB/s)</summary>
+      <description>Full bar when the automatic maximum is off.</description>
+    </key>
+    <key name="network-present-as" type="s">
+      <choices>
+        <choice value="bars"/>
+        <choice value="values"/>
+        <choice value="bars-and-values"/>
+      </choices>
+      <default>'bars'</default>
+      <summary>Present data as</summary>
+    </key>
+    <key name="network-color-in" type="s">
+      <default>'#ff4f00'</default>
+      <summary>Bar colour (incoming)</summary>
+    </key>
+    <key name="network-color-out" type="s">
+      <default>'#ffe500'</default>
+      <summary>Bar colour (outgoing)</summary>
+    </key>
+    <key name="network-colorize" type="b">
+      <default>false</default>
+      <summary>Colorize values</summary>
+    </key>
+    <key name="network-digits" type="u">
+      <range min="0" max="5"/>
+      <default>2</default>
+      <summary>Digits number</summary>
+    </key>
+
+    <!-- Internal -->
+    <key name="prefs-page" type="s">
+      <default>''</default>
+      <summary>Preferences page to show</summary>
+      <description>Set by the panel menu before opening the preferences; they show it and clear it.</description>
+    </key>
+  </schema>
+</schemalist>

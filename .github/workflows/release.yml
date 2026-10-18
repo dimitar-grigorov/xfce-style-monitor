@@ -1,0 +1,25 @@
+# A tag like v1 or v0.2 builds the zip and publishes a GitHub Release with it; the notes are
+# that version's section of CHANGELOG.md.
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends gnome-shell
+      - run: scripts/pack.sh
+      - name: Release notes from CHANGELOG.md
+        run: |
+          version=${GITHUB_REF_NAME#v}
+          awk -v v="$version" '/^## /{p = index($0, "[" v "]") > 0; next} p' CHANGELOG.md > notes.md
+      - run: gh release create "$GITHUB_REF_NAME" dist/*.shell-extension.zip --notes-file notes.md
+        env:
+          GH_TOKEN: ${{ github.token }}

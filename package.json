@@ -1,0 +1,14 @@
+{
+  "name": "xfce-style-monitor",
+  "private": true,
+  "type": "module",
+  "description": "Dev tooling only; nothing here ships with the extension.",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "tests/run.sh"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10",
+    "eslint": "^10"
+  }
+}

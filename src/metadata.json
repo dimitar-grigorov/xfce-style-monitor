@@ -1,0 +1,12 @@
+{
+  "uuid": "xfce-style-monitor@grigorov",
+  "name": "Xfce-style Monitor",
+  "description": "The System Load Monitor and Network Monitor panel plugins of Xfce, for GNOME: thin bars with text labels for CPU, memory and swap, uptime, and network in/out rates. Nothing else to install.\n\nNot affiliated with the Xfce project.",
+  "settings-schema": "org.gnome.shell.extensions.xfce-style-monitor",
+  "gettext-domain": "xfce-style-monitor",
+  "shell-version": [
+    "48"
+  ],
+  "url": "https://github.com/dimitar-grigorov/xfce-style-monitor",
+  "version-name": "0.1"
+}

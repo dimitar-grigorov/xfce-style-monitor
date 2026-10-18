@@ -1,0 +1,48 @@
+/* Sizes measured on screenshots/xfce-original-panel.png in the repository. */
+
+.xsm-indicator {
+    -natural-hpadding: 6px;
+    -minimum-hpadding: 4px;
+}
+
+.xsm-box {
+    spacing: 6px;
+}
+
+.xsm-network {
+    spacing: 4px;
+}
+
+.xsm-monitor {
+    spacing: 3px;
+}
+
+.xsm-bars {
+    spacing: 4px;
+}
+
+/* lib/widgets/bar.js; the height follows the panel. */
+.xsm-bar {
+    width: 4px;
+    margin: 2px 0;
+    /* XFCE: a dark theme trough, invisible on GNOME's black panel; here a light one. */
+    -xsm-trough-color: rgba(255, 255, 255, 0.1);
+    -xsm-border-width: 1px;
+    -xsm-border-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Tabular digits: same-length values keep the same width. */
+.xsm-value {
+    font-feature-settings: "tnum";
+    text-align: center;
+}
+
+.xsm-values {
+    spacing: 0;
+}
+
+/* The dash's label look, for several lines. */
+.dash-label.xsm-tooltip {
+    text-align: left;
+    border-radius: 12px;
+}
