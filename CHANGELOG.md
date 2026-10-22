@@ -5,6 +5,12 @@ section `[X]` as the release notes.
 
 ## [Unreleased]
 
+## [0.3] - 2026-10-22
+
+### Fixed
+- GNOME Shell could crash with Dash to Panel and network values shown: a value getting shorter
+  left a label's natural width below its minimum, which Clutter treats as a fatal error.
+
 ## [0.2] - 2026-10-18
 
 ### Changed

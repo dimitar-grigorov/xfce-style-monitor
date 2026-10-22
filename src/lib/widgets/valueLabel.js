@@ -17,19 +17,25 @@ export class ValueLabel extends St.Label {
         this._widest = 0;
     }
 
+    // Raises both sizes. min_width alone breaks once the text shrinks: natural < minimum, and a
+    // horizontal ClutterBoxLayout (Dash to Panel turns every box in its panel horizontal) kills
+    // the shell for that with g_error().
+    vfunc_get_preferred_width(forHeight) {
+        const [min, natural] = super.vfunc_get_preferred_width(forHeight);
+        const widest = this._widest ?? 0; // also called from super() in the constructor
+        return [Math.max(min, widest), Math.max(natural, widest)];
+    }
+
     setValue(text) {
         if (this.text === text)
             return;
         this.text = text;
         const [, natural] = this.get_preferred_width(-1);
-        if (natural > this._widest) {
-            this._widest = natural;
-            this.min_width = natural;
-        }
+        this._widest = Math.max(this._widest, natural);
     }
 
     resetWidth() {
         this._widest = 0;
-        this.min_width_set = false;
+        this.queue_relayout();
     }
 }
