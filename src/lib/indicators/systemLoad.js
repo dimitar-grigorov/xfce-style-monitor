@@ -68,12 +68,12 @@ export class SystemLoadIndicator extends IndicatorButton {
         this.restart();
     }
 
-    _onDestroy() {
+    destroy() {
         this._power?.destroy();
         this._settings.disconnectObject(this);
         this._settings = null;
         this._monitors = null;
-        super._onDestroy();
+        super.destroy();
     }
 
     // setup_timer(): on battery the power-saving interval; on battery with the lid closed, none.

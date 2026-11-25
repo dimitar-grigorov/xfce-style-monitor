@@ -5,6 +5,12 @@ section `[X]` as the release notes.
 
 ## [Unreleased]
 
+## [0.4] - 2026-11-26
+
+### Changed
+- Indicators clean up in `destroy()` instead of `_onDestroy()`, as the extensions.gnome.org
+  review asked.
+
 ## [0.3] - 2026-10-22
 
 ### Fixed

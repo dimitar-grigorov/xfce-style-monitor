@@ -64,13 +64,13 @@ export class NetworkIndicator extends IndicatorButton {
         this._sync();
     }
 
-    _onDestroy() {
+    destroy() {
         this._addresses.destroy();
         this._settings.disconnectObject(this);
         this._settings = null;
         this._in = null;
         this._out = null;
-        super._onDestroy();
+        super.destroy();
     }
 
     interval() {

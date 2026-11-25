@@ -18,12 +18,15 @@ export class IndicatorButton extends PanelMenu.Button {
         this.menu.addAction(_('Settings'), openPreferences);
         this._ticker = new Ticker(name, cancellable => this._update(cancellable));
         // Hidden panel (fullscreen video, autohide): nothing to show, nothing to read.
-        this.connect('notify::mapped', () => this.restart());
+        this._mappedId = this.connect('notify::mapped', () => this.restart());
     }
 
-    _onDestroy() {
+    // Subclasses clean up first, then call this: the ticker stops before the actor goes.
+    destroy() {
+        this.disconnect(this._mappedId);
         this._ticker.destroy();
-        super._onDestroy();
+        this._ticker = null;
+        super.destroy();
     }
 
     restart() {
